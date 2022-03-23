@@ -19,7 +19,9 @@ class CreditCard extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, "transaction");
+          Navigator.pushNamed(context, "transaction", arguments: creditCard);
+          //final Product product =
+          // ModalRoute.of(context)!.settings.arguments as Product;
         },
         child: Container(
           decoration: BoxDecoration(

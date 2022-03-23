@@ -20,7 +20,10 @@ class _HomePageState extends State<HomePage> {
         preferredSize: Size.fromHeight(60),
         child: AppbarPersonalizada(titulo: "PAGINA PRINCIPAL"),
       ),
-      body: _body(context),
+      body: RefreshIndicator(
+          onRefresh: () =>
+              Navigator.pushReplacementNamed(context, "home"),
+          child: _body(context)),
       floatingActionButton: FloatingActionButton(
         backgroundColor: primaryColor,
         child: const Icon(Icons.add),
