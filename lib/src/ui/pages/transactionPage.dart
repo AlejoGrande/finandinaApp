@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:test_finandina/src/models/accounts_model.dart';
 import 'package:test_finandina/src/models/clients_model.dart';
 import 'package:test_finandina/src/models/colors.dart';
-import 'package:test_finandina/src/providers/client_provider.dart';
+
 import 'package:test_finandina/src/providers/transaction_provider.dart';
 import 'package:test_finandina/src/ui/widgets/appbar.dart';
-import 'package:test_finandina/src/ui/widgets/creditCard.dart';
 import 'package:test_finandina/src/ui/widgets/itemFormularioNumber.dart';
 
 class TransactionPage extends StatefulWidget {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_finandina/src/ui/pages/funciones_page.dart';
+import 'package:test_finandina/src/ui/pages/historal_page.dart';
 import 'package:test_finandina/src/ui/pages/home_page.dart';
 import 'package:test_finandina/src/ui/pages/login_page.dart';
 import 'package:test_finandina/src/ui/pages/splash_page.dart';
@@ -9,6 +11,8 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     "splash": (BuildContext context) => const SplashPage(),
     "login": (BuildContext context) => LoginPage(),
     "home": (BuildContext context) => const HomePage(),
-    "transaction":(BuildContext context) => TransactionPage(),
+    "transaction": (BuildContext context) => TransactionPage(),
+    "historial": (BuildContext context) => HistorialPage(),
+    "funciones": (BuildContext context) => FuncionesPage(),
   };
 }
