@@ -39,8 +39,11 @@ class _SplashPageState extends State<SplashPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SvgPicture.asset(
-                          "lib/src/resources/img/banco-finandina-blanco.svg",
+                        Hero(
+                          tag: "unique",
+                          child: SvgPicture.asset(
+                            "lib/src/resources/img/banco-finandina-blanco.svg",
+                          ),
                         ),
                       ],
                     ),

@@ -170,8 +170,11 @@ Widget _crearFondo(BuildContext context) {
               padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
               width: double.infinity,
               height: 125,
-              child: SvgPicture.asset(
-                "lib/src/resources/img/banco-finandina-blanco.svg",
+              child: Hero(
+                tag: "unique",
+                child: SvgPicture.asset(
+                  "lib/src/resources/img/banco-finandina-blanco.svg",
+                ),
               ),
             ),
             const SizedBox(height: 5.0, width: double.infinity),

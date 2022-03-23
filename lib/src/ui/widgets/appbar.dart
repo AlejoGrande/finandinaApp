@@ -16,7 +16,7 @@ class AppbarPersonalizada extends StatelessWidget {
       automaticallyImplyLeading: true,
       centerTitle: true,
       backgroundColor: primaryColor,
-      title: Text("PAGINA PRINCIPAL"),
+      title: Text(titulo),
       actions: <Widget>[
         PopupMenuButton<String>(
             shape: const RoundedRectangleBorder(

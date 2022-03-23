@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(60),
-        child: AppbarPersonalizada(titulo: "aaaa"),
+        child: AppbarPersonalizada(titulo: "PAGINA PRINCIPAL"),
       ),
       body: _body(context),
       floatingActionButton: FloatingActionButton(
