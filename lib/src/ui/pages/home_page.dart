@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:test_finandina/src/models/accounts_model.dart';
 import 'package:test_finandina/src/models/clients_model.dart';
 import 'package:test_finandina/src/models/colors.dart';
-import 'package:test_finandina/src/providers/account_provider.dart';
 import 'package:test_finandina/src/providers/client_provider.dart';
 import 'package:test_finandina/src/ui/widgets/appbar.dart';
-import 'package:test_finandina/src/ui/widgets/drawer.dart';
+import 'package:test_finandina/src/ui/widgets/creditCard.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,9 +24,8 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: primaryColor,
         child: const Icon(Icons.add),
-        onPressed: (){
-        
-      },),
+        onPressed: () {},
+      ),
     );
   }
 }
@@ -38,7 +34,7 @@ _body(BuildContext context) {
   final providerClient = new ClientProvider(); //cr
 
   return Padding(
-    padding: const EdgeInsets.only(left: 20,right: 20),
+    padding: const EdgeInsets.only(left: 20, right: 20),
     child: FutureBuilder(
         future: providerClient.getClient(),
         builder: (context, AsyncSnapshot<Clients?> snapshot) {
@@ -47,7 +43,7 @@ _body(BuildContext context) {
                   itemCount: snapshot.data?.accounts?.length,
                   itemBuilder: (context, i) => Container(
                       child: snapshot.data?.accounts != null
-                          ? CreditCard(creditCard:snapshot.data!.accounts![i])
+                          ? CreditCard(creditCard: snapshot.data!.accounts![i])
                           : const Center(
                               child: Text("No hay tarjetas asignadas"),
                             )))
@@ -55,29 +51,6 @@ _body(BuildContext context) {
         }),
   );
 }
-//snapshot.data!.accounts![i]
-class CreditCard extends StatelessWidget {
-  final Accounts creditCard;
-   CreditCard({
-    required this.creditCard,
-    Key? key,
-  }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Colors.green,
-      shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: 160,
-          ),
-          Text(creditCard.accountNumber.toString())
-        ],
-      ),
-    );
-  }
-}
+//snapshot.data!.accounts![i]
+

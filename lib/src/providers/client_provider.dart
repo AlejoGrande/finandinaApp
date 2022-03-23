@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:test_finandina/src/models/clients_model.dart';
 
 class ClientProvider extends ChangeNotifier {
-  final _url = Uri.parse('https://finandina.herokuapp.com/clients/1487541554');
+  final _url = Uri.parse('https://finandina.herokuapp.com/clients/123456789');
 
 
   ClientProvider() {
