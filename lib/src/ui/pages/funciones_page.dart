@@ -41,19 +41,25 @@ _body(BuildContext context, Accounts card) {
             onPressed: () {
               Navigator.pushNamed(context, "transaction", arguments: card);
             },
-            child: const Text("TRANSFERENCIA",
-            textAlign: TextAlign.center
-            ,style: TextStyle(fontWeight: FontWeight.bold),)),
-            const SizedBox(height: 50,),
+            child: const Text(
+              "TRANSFERENCIA",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            )),
+        const SizedBox(
+          height: 50,
+        ),
         ElevatedButton(
             style: ElevatedButton.styleFrom(
                 fixedSize: const Size(200, 60), primary: primaryColor),
             onPressed: () {
               Navigator.pushNamed(context, "historial", arguments: card);
             },
-            child: const Text("HISTORIAL TRANSFERENCIAS",
-            textAlign: TextAlign.center
-            ,style: TextStyle(fontWeight: FontWeight.bold),))
+            child: const Text(
+              "HISTORIAL TRANSFERENCIAS",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ))
       ],
     ),
   );

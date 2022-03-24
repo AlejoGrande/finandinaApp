@@ -15,6 +15,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final String id =
+        ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(60),
@@ -22,8 +24,8 @@ class _HomePageState extends State<HomePage> {
       ),
       body: RefreshIndicator(
           onRefresh: () =>
-              Navigator.pushReplacementNamed(context, "home"),
-          child: _body(context)),
+              Navigator.pushReplacementNamed(context, "home", arguments: id),
+          child: _body(context,id)),
       floatingActionButton: FloatingActionButton(
         backgroundColor: primaryColor,
         child: const Icon(Icons.add),
@@ -33,13 +35,13 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-_body(BuildContext context) {
+_body(BuildContext context,String id) {
   final providerClient = new ClientProvider(); //cr
 
   return Padding(
     padding: const EdgeInsets.only(left: 20, right: 20),
     child: FutureBuilder(
-        future: providerClient.getClient(),
+        future: providerClient.getClient(id),
         builder: (context, AsyncSnapshot<Clients?> snapshot) {
           return snapshot.hasData
               ? ListView.builder(

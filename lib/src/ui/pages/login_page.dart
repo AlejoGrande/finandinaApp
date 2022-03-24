@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:test_finandina/src/models/colors.dart';
+import 'package:test_finandina/src/providers/client_provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -9,17 +10,18 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   @override
+  TextEditingController _controller = new TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
       children: <Widget>[
         _crearFondo(context),
-        _loginForm(context),
+        _loginForm(context, _controller),
       ],
     ));
   }
 
-  Widget _loginForm(BuildContext context) {
+  Widget _loginForm(BuildContext context, TextEditingController controller) {
     final size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
@@ -51,9 +53,9 @@ class _LoginPageState extends State<LoginPage> {
                       fontWeight: FontWeight.bold,
                       color: Color(0xddd9241c))),
               const SizedBox(height: 20.0),
-              _createEmail(),
+              _createEmail(controller),
               const SizedBox(height: 20.0),
-              _buttonLogin(context),
+              _buttonLogin(context, controller),
               const SizedBox(height: 2.0),
 
               const SizedBox(height: 7.0),
@@ -78,9 +80,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _createEmail() {
-    final TextEditingController controller = TextEditingController(text: "");
-
+  Widget _createEmail(TextEditingController controller) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: TextField(
@@ -97,16 +97,21 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-Widget _buttonLogin(BuildContext context) {
+Widget _buttonLogin(
+    BuildContext context, TextEditingController controllerUser) {
   // final TextEditingController controller = TextEditingController(text: "");
-
+  ClientProvider clientProvider = new ClientProvider();
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
           fixedSize: const Size(150, 40), primary: primaryColor),
-      onPressed: () {
-        Navigator.pushReplacementNamed(context, "home");
+      onPressed: () async {
+        final resp = await clientProvider.getClient(controllerUser.text);
+        print(resp);
+        if(resp!=null){
+        Navigator.pushReplacementNamed(context, "home", arguments: resp.documentNumber.toString());
+        }
       },
       child: const Text("INGRESAR"),
     ),

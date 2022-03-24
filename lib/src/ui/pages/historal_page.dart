@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:test_finandina/src/models/accounts_model.dart';
 import 'package:test_finandina/src/models/clients_model.dart';
 import 'package:test_finandina/src/models/colors.dart';
@@ -46,7 +47,8 @@ _body(BuildContext context, Accounts card) {
                     itemCount: snapshot.data?.length,
                     itemBuilder: (context, i) => Container(
                         child: snapshot.data?[i] != null
-                            ? ItemTransaction(transaction: snapshot.data![i])
+                            ? ItemTransaction(
+                                transaction: snapshot.data![i], account: card)
                             : const Center(
                                 child: Text("No hay tarjetas asignadas"),
                               )))
@@ -56,13 +58,16 @@ _body(BuildContext context, Accounts card) {
 
 class ItemTransaction extends StatelessWidget {
   final Transaction transaction;
+  final Accounts account;
   const ItemTransaction({
+    required this.account,
     required this.transaction,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+     NumberFormat f = new NumberFormat("#,###.0#", "es_US");
     return Container(
       child: Card(
         elevation: 10.0,
@@ -72,18 +77,23 @@ class ItemTransaction extends StatelessWidget {
           children: [
             ListTile(
               //leading: Icon(Icons.notifications, color: Colors.red),
-              title: Text("Valor: \$"+transaction.value.toString()),
+              title: transaction.from.id == account.id
+                  ? Text(
+                      ("Valor: -\$" + f.format(transaction.value)),
+                      style: TextStyle(color: Colors.red),
+                    )
+                  : Text("Valor: +\$" + f.format(transaction.value),
+                  style: TextStyle(color: Colors.green.shade700)),
               subtitle: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("De: "+transaction.from.accountNumber.toString()),
-                  Text("Para:"+transaction.to.accountNumber.toString()),
-                  Text("fecha: ${transaction.to.created.day}/${transaction.to.created.month}/${transaction.to.created.year}"),
+                  Text("De: " + transaction.from.accountNumber.toString()),
+                  Text("Para:" + transaction.to.accountNumber.toString()),
+                  Text(
+                      "fecha: ${transaction.to.created.day}/${transaction.to.created.month}/${transaction.to.created.year}"),
                 ],
               ),
-              
-              
             ),
           ],
         ),
